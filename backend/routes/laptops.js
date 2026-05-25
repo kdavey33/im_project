@@ -163,4 +163,19 @@ router.post('/bulk', async (req, res) => {
   }
 });
 
+// Retire (delete) a laptop
+router.delete('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const laptop = await Laptop.findByPk(id);
+    if (!laptop) {
+      return res.status(404).json({ error: 'Laptop not found' });
+    }
+    await laptop.destroy();
+    res.json({ message: 'Laptop retired successfully' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 module.exports = router;

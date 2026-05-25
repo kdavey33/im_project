@@ -104,6 +104,18 @@ function App() {
     }
   }
 
+  const handleRetireLaptop = async (laptop) => {
+    if (window.confirm(`Are you sure you want to retire this laptop?\n\nModel: ${laptop.modelNumber}\nSerial: ${laptop.serialNumber}`)) {
+      try {
+        await axios.delete(`${API_BASE}/laptops/${laptop.id}`)
+        fetchData()
+      } catch (err) {
+        console.error('Error retiring laptop:', err)
+        alert('Error retiring laptop: ' + (err.response?.data?.error || err.message))
+      }
+    }
+  }
+
   const filteredLaptops = laptops.filter(laptop => 
     laptop.modelNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
     laptop.serialNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -180,17 +192,25 @@ function App() {
                 <td>{laptop.serialNumber}</td>
                 <td>{laptop.Location?.name || 'Unknown'}</td>
                 <td>
-                  <select 
-                    value={laptop.LocationId || ''} 
-                    onChange={(e) => updateLocation(laptop.id, e.target.value)}
-                  >
-                    <option value="">Move to...</option>
-                    {locations.map(loc => (
-                      <option key={loc.id} value={loc.id}>
-                        {loc.name}
-                      </option>
-                    ))}
-                  </select>
+                  <div className="actions">
+                    <select 
+                      value={laptop.LocationId || ''} 
+                      onChange={(e) => updateLocation(laptop.id, e.target.value)}
+                    >
+                      <option value="">Move to...</option>
+                      {locations.map(loc => (
+                        <option key={loc.id} value={loc.id}>
+                          {loc.name}
+                        </option>
+                      ))}
+                    </select>
+                    <button 
+                      className="retire-btn" 
+                      onClick={() => handleRetireLaptop(laptop)}
+                    >
+                      Retire
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}

@@ -15,6 +15,25 @@ table {
   margin-top: 20px;
 }
 
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.retire-btn {
+  background-color: #ff4444;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.retire-btn:hover {
+  background-color: #cc0000;
+}
+
 th, td {
   border: 1px solid #ddd;
   padding: 12px;
