@@ -56,6 +56,7 @@
 - [x] **UI Prototype:** Created a dashboard with search, add form, and move functionality.
 - [x] **Bulk Import:** Added CSV import capability.
 - [x] **Conflict Resolution:** Implemented logic to handle workstation assignment conflicts.
+- [x] **Asset Retirement:** Added feature to remove laptops from the system.
 - [x] **Dockerization:** Created a multi-stage Dockerfile for production deployment.
 
 ## Future Tasks

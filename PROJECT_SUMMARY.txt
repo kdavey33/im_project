@@ -10,6 +10,7 @@ A full-stack inventory management system designed for a call center to track ove
     - One "Storage Closet" for unassigned assets.
 - **Conflict Resolution:** System prevents multiple laptops from being assigned to the same workstation. If a conflict occurs, the user is prompted to move the existing laptop to the Storage Closet.
 - **Bulk Import:** Support for bulk asset entry via CSV. Format: `modelNumber, serialNumber, LocationId` (supports both workstation names and IDs).
+- **Asset Retirement:** Ability to permanently remove (retire) a laptop from the system with a confirmation prompt.
 - **Search Functionality:** Real-time filtering by Model, Serial, or Location.
 - **Dockerized Deployment:** Multi-stage build that serves the React frontend via the Express API on a single port.
 
