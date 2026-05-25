@@ -39,7 +39,7 @@
    ```
 2. Run the container:
    ```bash
-   docker run -p 5000:5000 im_system
+   sudo docker run -p 5000:5000 -v $(pwd)/backend/database.sqlite:/app/backend/database.sqlite im_system
    ```
    - The application (Frontend + Backend) will be available at `http://localhost:5000`.
 
