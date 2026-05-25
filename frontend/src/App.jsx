@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import axios from 'axios'
 import './App.css'
 
@@ -11,11 +11,7 @@ function App() {
   const [newLaptop, setNewLaptop] = useState({ modelNumber: '', serialNumber: '', LocationId: '' })
   const [searchTerm, setSearchTerm] = useState('')
 
-  useEffect(() => {
-    fetchData()
-  }, [])
-
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       const [laptopRes, locationRes] = await Promise.all([
         axios.get(`${API_BASE}/laptops`),
@@ -28,7 +24,11 @@ function App() {
       console.error('Error fetching data:', err)
       setLoading(false)
     }
-  }
+  }, [])
+
+  useEffect(() => {
+    fetchData()
+  }, [fetchData])
 
   const handleAddLaptop = async (e, resolveConflict = false) => {
     if (e) e.preventDefault()
