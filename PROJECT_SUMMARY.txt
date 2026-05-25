@@ -1,0 +1,42 @@
+# Laptop Inventory Management System - Project Summary
+
+## Project Overview
+A full-stack inventory management system designed for a call center to track over 200 laptops across workstations and a central storage closet.
+
+## Core Features
+- **Asset Tracking:** Track Model Number, Serial Number, and Location for each laptop.
+- **Location Management:** 
+    - 200 predefined Workstations.
+    - One "Storage Closet" for unassigned assets.
+- **Conflict Resolution:** System prevents multiple laptops from being assigned to the same workstation. If a conflict occurs, the user is prompted to move the existing laptop to the Storage Closet.
+- **Bulk Import:** Support for bulk asset entry via CSV. Format: `modelNumber, serialNumber, LocationId` (supports both workstation names and IDs).
+- **Search Functionality:** Real-time filtering by Model, Serial, or Location.
+- **Dockerized Deployment:** Multi-stage build that serves the React frontend via the Express API on a single port.
+
+## Tech Stack
+- **Backend:** Node.js, Express 5, Sequelize ORM.
+- **Frontend:** React (Vite), Axios, CSS3.
+- **Database:** SQLite (file-based).
+- **Deployment:** Docker (node:22-slim base).
+
+## Operational Commands
+
+### Docker (Recommended)
+1. **Build:** `sudo docker build -t im_system .`
+2. **Run (with Data Persistence):**
+   ```bash
+   sudo docker run -p 5000:5000 -v $(pwd)/backend/database.sqlite:/app/backend/database.sqlite im_system
+   ```
+
+### Development (Local)
+1. **Backend:** `cd backend && npm install && node index.js`
+2. **Frontend:** `cd frontend && npm install && npm run dev`
+
+## File Structure
+- `backend/`: API logic, Sequelize models, and database configuration.
+- `frontend/`: React source code and production build configuration.
+- `Dockerfile`: Surgical multi-stage build configuration.
+- `GEMINI.md`: Comprehensive instructional context for the project.
+- `PROJECT_SUMMARY.txt`: This file.
+
+Created on: May 24, 2026
