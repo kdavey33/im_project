@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react'
 import axios from 'axios'
 import './App.css'
 
-const API_BASE = 'http://localhost:5000/api'
+const API_BASE = import.meta.env.DEV ? 'http://localhost:5000/api' : '/api'
 
 function App() {
   const [laptops, setLaptops] = useState([])
